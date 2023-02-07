@@ -25,20 +25,21 @@ const DiscountOffer = () => {
                         <div className='lg:text-4xl text-2xl font-semibold flex justify-center items-center text-[#555555] '>:</div>
                         <div>
                             <h1 className='lg:text-5xl text-3xl font-bold text-[#119744] font-serif'>00</h1>
-                            <p className='lg:text-xl text-sm  font-medium text-[#555555]'>Days</p>
+                            <p className='lg:text-xl text-sm  font-medium text-[#555555]'>Hours</p>
 
                         </div>
                         <div className='lg:text-4xl text-2xl font-semibold flex justify-center items-center text-[#555555] '>:</div> <div>
                             <h1 className='lg:text-5xl text-3xl font-bold text-[#119744] font-serif'>00</h1>
-                            <p className='lg:text-xl text-sm  font-medium text-[#555555]'>Days</p>
+                            <p className='lg:text-xl text-sm  font-medium text-[#555555]'>Minutes
+                            </p>
 
                         </div>
                         <div className='lg:text-4xl text-2xl font-semibold flex justify-center items-center text-[#555555] '>:</div> <div>
                             <h1 className='lg:text-5xl text-3xl font-bold text-[#119744] font-serif'>00</h1>
-                            <p className='lg:text-xl text-sm  font-medium text-[#555555]'>Days</p>
+                            <p className='lg:text-xl text-sm  font-medium text-[#555555]'>Seconds</p>
 
                         </div>
-                        <div className='lg:text-4xl text-2xl font-semibold flex justify-center items-center text-[#555555] '>:</div>
+
 
                     </div>
 
