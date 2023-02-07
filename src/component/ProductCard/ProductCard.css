@@ -1,0 +1,125 @@
+.card {
+    width: 24s0px;
+    background-color: #ffffff;
+    margin-top: 50px;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 10px; */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.icon {
+    /* width: 80px;
+    height: 60px;
+    color: white;
+    font-weight: 400;
+    background-color: #119744;
+    border-radius: 5px; */
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.icon1 {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    color: white;
+    font-weight: 300;
+    background-color: #119744;
+    border-radius: 5px;
+}
+
+.icon2 {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    color: white;
+    font-weight: 300;
+    background-color: #119744;
+    border-radius: 5px;
+}
+
+.icon3 {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    color: white;
+    font-weight: 300;
+    background-color: #119744;
+    border-radius: 5px;
+}
+
+
+.card:hover {
+    border: 1px solid #119744;
+}
+
+.card:hover .icon {
+    opacity: 1;
+}
+
+.info img {
+    width: 250px;
+    height: 200px;
+    text-align: center;
+}
+
+.info h1 {
+    text-align: center;
+    color: #39404a;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.info h1:hover {
+    color: #119744;
+}
+
+.info h2 {
+    text-align: center;
+    color: #119744;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-button {
+    background-color: #e8e8e8;
+    color: #39404a;
+    font-weight: 500;
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.add-button:hover {
+    background-color: #119744;
+    color: white;
+}
