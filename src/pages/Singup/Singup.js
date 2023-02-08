@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Singup = () => {
     return (
         <div>
-            <section className="h-screen mx-10">
+            <section className="h-screen mx-10 pt-8">
                 <div className="px-6 h-full text-gray-800">
                     <div
                         className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"

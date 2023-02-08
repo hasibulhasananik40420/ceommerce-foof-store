@@ -3,7 +3,7 @@ import './ProductCard.css'
 import { AiOutlineEye, AiFillEye } from 'react-icons/ai'
 import { BiBasket } from 'react-icons/bi'
 import { DiGitCompare } from 'react-icons/di'
-import { HiOutlineVideoCamera } from 'react-icons/hi'
+import { BiRightArrow } from 'react-icons/bi'
 const ProductCard = () => {
     return (
         <div className='mt-12'>
@@ -28,7 +28,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -52,7 +52,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -76,7 +76,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -100,7 +100,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -122,7 +122,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -144,7 +144,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -166,7 +166,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -188,7 +188,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -210,7 +210,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
@@ -232,7 +232,7 @@ const ProductCard = () => {
 
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
-                        <HiOutlineVideoCamera className='icon2' />
+                        <BiRightArrow className='icon2' />
                         <AiOutlineEye className='icon3' />
 
                     </div>
