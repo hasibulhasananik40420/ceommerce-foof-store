@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../../component/ProductCard/ProductCard';
+import FeedBack from '../FeedBack/FeedBack';
 import Articles from './Articles';
 import Carosul from './Carosul';
 import DiscountOffer from './DiscountOffer';
@@ -24,6 +25,7 @@ const Home = () => {
             <Twobanner />
             <ShopBrands />
             <Articles />
+            <FeedBack />
             <TopSmaillBanner />
 
         </div>

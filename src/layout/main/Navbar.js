@@ -54,18 +54,18 @@ const Navbar = () => {
                                 </div>
                             </li>
 
-                            <li className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0'>
-                                <IoIosGitCompare size={20} />
+                            <li title='compare' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0'>
+                                <Link to='/compare'> <IoIosGitCompare size={20} /></Link>
                                 <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white  '>0</div>
                             </li>
 
-                            <li className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0 '>
-                                <AiFillHeart size={20} />
+                            <li title='wishlist' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0 '>
+                                <Link to='/wishlist'> <AiFillHeart size={20} /></Link>
                                 <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white'>0</div>
                             </li>
 
-                            <li className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0 '>
-                                <BsFillCartCheckFill size={20} />
+                            <li title='Add to cart' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0 '>
+                                <Link to='/cart'>  <BsFillCartCheckFill size={20} /></Link>
                                 <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white'>0</div>
                             </li>
 

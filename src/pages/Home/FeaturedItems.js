@@ -59,7 +59,10 @@ const FeaturedItems = () => {
                             </div>
                         </div>
                     </div>
-                </div> <div
+                </div>
+
+
+                <div
                     className="lg:w-[600px] lg:h-[280px] w-full h-full relative p-6 bg-white rounded-lg shadow-lg hover:border hover:border-[#119744]"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}

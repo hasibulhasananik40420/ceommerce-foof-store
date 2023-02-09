@@ -4,6 +4,7 @@ import { AiOutlineEye, AiFillEye } from 'react-icons/ai'
 import { BiBasket } from 'react-icons/bi'
 import { DiGitCompare } from 'react-icons/di'
 import { BiRightArrow } from 'react-icons/bi'
+import { Link } from 'react-router-dom';
 const ProductCard = () => {
     return (
         <div className='mt-12'>
@@ -29,7 +30,7 @@ const ProductCard = () => {
                     <div className='icon'>
                         <DiGitCompare className='icon1' />
                         <BiRightArrow className='icon2' />
-                        <AiOutlineEye className='icon3' />
+                        <Link to='/product-details'> <AiOutlineEye className='icon3' /></Link>
 
                     </div>
 
