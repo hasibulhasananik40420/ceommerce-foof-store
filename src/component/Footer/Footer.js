@@ -5,10 +5,11 @@ import { BsTelephone } from 'react-icons/bs';
 import { FaFacebookF } from 'react-icons/fa';
 import { FiInstagram, FiLinkedin } from 'react-icons/fi';
 import { AiOutlineYoutube } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div>
-            <div className='py-6 bg-[#f5f6f7] '>
+            <div className='py-6 bg-[#f5f6f7] pt-12'>
 
                 <div className=' md:flex md:justify-evenly w-full pl-8'>
 
@@ -16,9 +17,7 @@ const Footer = () => {
                     <div>
                         <div className='flex items-center ml-[-4px]'>
                             <img className='w-44 mb-2' src="https://mironmahmud.com/greeny/assets/ltr/images/logo.png" alt="" />
-                            {/* <img className='w-8' src="https://img.icons8.com/color/2x/bbb.png" alt="" />
-                            <h1 className='text-2xl font-medium pb-3 font-bubble'>FontPage FreeBirds</h1>
-                             */}
+
                         </div>
 
 
@@ -46,13 +45,13 @@ const Footer = () => {
 
                     <div className='mt-4 md:mt-0 cursor-pointer'>
                         <div className=' pb-2'>
-                            <p className='hover:underline duration-300 text-xl font-poppins'>Blogs</p>
+                            <p className='hover:underline duration-300 text-xl font-poppins'><Link to='/blogs'>Blogs</Link></p>
                         </div>
                         <div className=' pb-2'>
                             <p className='hover:underline duration-300 text-xl font-poppins '>success</p>
                         </div>
                         <div className=' pb-2'>
-                            <p className='hover:underline duration-300 text-xl font-poppins '>About us</p>
+                            <p className='hover:underline duration-300 text-xl font-poppins '><Link to='/about'>About us</Link></p>
                         </div>
                         <div className=' pb-2'>
                             <p className='hover:underline duration-300 text-xl font-poppins'>Refund policy</p>

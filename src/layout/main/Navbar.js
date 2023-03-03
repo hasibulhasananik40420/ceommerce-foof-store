@@ -1,11 +1,35 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BsFillCartCheckFill, BsFillCartFill } from "react-icons/bs";
-import { IoIosGitCompare, IoIosListBox } from "react-icons/io";
-import { BiMenuAltLeft, BiSearch, BiSearchAlt } from "react-icons/bi";
+import { BsFillCartCheckFill } from "react-icons/bs";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { BiMenuAltLeft, BiSearch } from "react-icons/bi";
 import { AiFillHeart } from 'react-icons/ai';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase/Firebase.init';
+import { signOut } from 'firebase/auth';
+import useOffer from '../../hooks/useOffer';
+import OfferModal from '../../pages/OfferModal/OfferModal';
+import useMyCart from '../../hooks/useMyCart';
+
 const Navbar = () => {
+
+
+
+    // modal
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const [offers] = useOffer()
+    // console.log(offers)
     let [open, setOpen] = useState(false);
+    const [user] = useAuthState(auth)
+
+    //mycart length
+    const [mycart] = useMyCart(user?.email)
+
+    const handleSingOut = () => {
+        signOut(auth)
+    }
 
     return (
         <div>
@@ -22,8 +46,11 @@ const Navbar = () => {
 
 
                                 <div className='flex justify-center items-center gap-2'>
-                                    <img className='lg:h-10 lg:w-10 w-6 h-6 rounded-full' src="https://mironmahmud.com/greeny/assets/ltr/images/user.png" alt="" />
-                                    <h1 className='font-semibold lg:text-xl text-sm text-[#119744] font-serif'>Hasibul</h1>
+
+                                    {user && <Link to='/dashboard' className='md:ml-8 text-xl text-[#119744]  font-semibold rounded-full border border-[#119744] px-4 py-1 hover:bg-[#119744] hover:text-white hover:duration-500 cursor-pointer '>Dashboard
+
+                                    </Link>}
+
                                 </div>
 
 
@@ -54,9 +81,12 @@ const Navbar = () => {
                                 </div>
                             </li>
 
-                            <li title='compare' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0'>
-                                <Link to='/compare'> <IoIosGitCompare size={20} /></Link>
-                                <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white  '>0</div>
+                            <li title='notification' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0'>
+                                {modalOpen && <OfferModal setOpenModal={setModalOpen} />}
+                                <button onClick={() => {
+                                    setModalOpen(true);
+                                }}> <IoMdNotificationsOutline size={20} /></button>
+                                <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white  '>{offers?.length}</div>
                             </li>
 
                             <li title='wishlist' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0 '>
@@ -66,15 +96,22 @@ const Navbar = () => {
 
                             <li title='Add to cart' className='relative h-10 w-10 bg-[#f5f6f7] md:ml-4 rounded-full border flex justify-center items-center hover:bg-[#119744] duration-300 hover:text-white cursor-pointer md:my-0 my-7 md:pb-0 '>
                                 <Link to='/cart'>  <BsFillCartCheckFill size={20} /></Link>
-                                <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white'>0</div>
+                                <div className='bg-[#119744] absolute top-[-10px] right-0 rounded-full h-5 w-5 p-1 flex justify-center items-center text-white'>{mycart?.length}</div>
                             </li>
 
 
-                            <li>
-                                <Link to='/login' className='md:ml-8 text-xl text-[#119744]  font-semibold rounded-full border border-[#119744] px-4 py-1 hover:bg-[#119744] hover:text-white hover:duration-500 cursor-pointer '>Login
+                            {
+                                user ? <li>
+                                    <button onClick={handleSingOut} className='md:ml-8 text-xl text-[#119744]  font-semibold rounded-full border border-[#119744] px-4 py-1 hover:bg-[#119744] hover:text-white hover:duration-500 cursor-pointer '>Singout
 
-                                </Link>
-                            </li>
+                                    </button>
+                                </li> :
+                                    <li>
+                                        <Link to='/login' className='md:ml-8 text-xl text-[#119744]  font-semibold rounded-full border border-[#119744] px-4 py-1 hover:bg-[#119744] hover:text-white hover:duration-500 cursor-pointer '>Login
+
+                                        </Link>
+                                    </li>
+                            }
 
 
 

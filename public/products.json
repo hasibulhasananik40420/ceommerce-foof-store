@@ -1,0 +1,130 @@
+[
+    {
+        "name": "Fresh Green Chilis",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg",
+        "description": "This pepper is known in Mexico as chile verde del norte, since it is common in the northern part of that country and virtually unknown in the central and southern regions. It is also one of the most common chiles in the southwestern United States.",
+        "quantity": 300,
+        "price": 28,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Red Carrot",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/02.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 200,
+        "price": 20,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Green Cucumber",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/03.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 600,
+        "price": 25,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Egplant",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/04.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 400,
+        "price": 15,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Green Ladies Finger",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/05.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 200,
+        "price": 35,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Delicious Tomato",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/06.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 100,
+        "price": 20,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Onion",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/07.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 200,
+        "price": 10,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Flower Coffee",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/08.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 200,
+        "price": 25,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Yellow Orange",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/16.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 400,
+        "price": 55,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Red Apple",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/14.jpg",
+        "description": "Most of the taproot consists of a pulpy outer cortex (phloem) and an inner core (xylem). High-quality carrots have a large proportion of cortex compared to core. Although a completely xylem-free carrot is not possible, some cultivars have small and deeply pigmented cores; the taproot can appear to lack .",
+        "quantity": 300,
+        "price": 30,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Yellow Banana ",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/18.jpg",
+        "description": "A banana is a curved, yellow fruit with a thick skin and soft sweet flesh. If you eat a banana every day for breakfast, your roommate might nickname you the monkey. A banana is a tropical fruit that's quite popular all over the world. It grows in bunches on a banana tree.",
+        "quantity": 300,
+        "price": 20,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Green  Pineapples",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/19.jpg",
+        "description": "sweet, juicy fruits. They grow on a plant with the scientific name Ananas comosus. Ananas means “excellent fruit” in an Indian language from South America. Pineapples grow in tropical (warm) areas around the world.",
+        "quantity": 200,
+        "price": 80,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Solid Nuts",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/15.jpg",
+        "description": "Nuts are actually fruits. They are defined as dry, single-seeded fruits that have high oil content. They are usually enclosed in a leathery or solid outer layer. In botany terms, nuts are strictly a particular kind of dry fruit that has a single seed, a hard shell, and a protective husk",
+        "quantity": 300,
+        "price": 40,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Solid Eggplant",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/04.jpg",
+        "description": "The standard eggplant is an oval or pear-shaped glossy purplish fruit 6 to 9 inches long. Japanese and oriental varieties tend to be elongated and slender with a thinner more delicate skin. Ornamental varieties are edible and tend to produce small white-skinned oval-shaped fruit.",
+        "quantity": 300,
+        "price": 40,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Red Capcicams",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/13.jpg",
+        "description": "The standard eggplant is an oval or pear-shaped glossy purplish fruit 6 to 9 inches long. Japanese and oriental varieties tend to be elongated and slender with a thinner more delicate skin. Ornamental varieties are edible and tend to produce small white-skinned oval-shaped fruit.",
+        "quantity": 300,
+        "price": 40,
+        "ratting": []
+    },
+    {
+        "name": "Fresh Yellow Orangs",
+        "img": "https://mironmahmud.com/greeny/assets/ltr/images/product/16.jpg",
+        "description": "The standard orangs is an oval or pear-shaped glossy purplish fruit 6 to 9 inches long. Japanese and oriental varieties tend to be elongated and slender with a thinner more delicate skin. Ornamental varieties are edible and tend to produce small white-skinned oval-shaped fruit.",
+        "quantity": 300,
+        "price": 80,
+        "ratting": []
+    }
+]

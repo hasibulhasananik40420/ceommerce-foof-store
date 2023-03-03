@@ -16,6 +16,7 @@ const Home = () => {
             <div className='mx-10 pt-8'>
                 <Carosul />
                 <ImgCard />
+
                 <ProductCard />
                 <FeaturedItems />
 
@@ -27,6 +28,7 @@ const Home = () => {
             <Articles />
             <FeedBack />
             <TopSmaillBanner />
+
 
         </div>
     );

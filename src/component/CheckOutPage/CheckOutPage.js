@@ -1,8 +1,75 @@
-import React from 'react';
-import { AiOutlineDelete, AiOutlineEye } from 'react-icons/ai';
+import React, { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import auth from '../../Firebase/Firebase.init';
+import useMyCart from '../../hooks/useMyCart';
 
 const CheckOutPage = () => {
+
+
+    let prices = []
+    const [user] = useAuthState(auth)
+    const [myCart] = useMyCart(user?.email)
+    // console.log(myCart)
+
+    myCart.map(data => prices.push(Number(data.cartPrice)))
+    // console.log(prices);
+    let subtotal = prices.reduce((previusValue, currentValue) => previusValue + currentValue, 0)
+    let VAT = ((5 / 100) * subtotal).toFixed(2)
+    let delivery = Number(70)
+    let Total = Number(subtotal) + Number(VAT) + Number(delivery)
+
+
+
+
+    //prace order 
+
+
+
+
+    const addorder = (e) => {
+        e.preventDefault()
+        const order = {
+            name: e.target.name.value,
+            email: user?.email,
+            phone: e.target.phone.value,
+            addinfo: e.target.addinfo.value,
+            total: Total
+
+
+        }
+
+        fetch('http://localhost:5000/orderplace', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Please go to my order page to pay',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+                e.target.reset()
+            })
+    }
+
+
+
+
+
+
+
+
+
+
     return (
         <div className='bg-[#f5f6f7] p-8 rounded  pt-24'>
             <div className='bg-white w-5/6  mx-auto rounded mt-8  border-t-4 border-[#119744]'>
@@ -11,189 +78,72 @@ const CheckOutPage = () => {
 
             <div>
 
-                <div className='bg-[#f5f6f7] flex justify-center'>
 
-                    <div className="relative overflow-x-auto mt-6 bg-white w-5/6 p-8 rounded">
-                        <div> <h1 className='text-2xl font-semibold mb-6 p-1 border-b-2 border-[#119744]'>Your Order</h1></div>
-                        <table className="w-full text-sm text-left text-white  rounded-md">
-                            <thead className="text-xs text-white uppercase bg-[#119744]">
-                                <tr>
-                                    <th scope="col" className="px-6 py-5">
-                                        Serial
-                                    </th>
-                                    <th scope="col" className="px-6 py-5">
-                                        Product
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Name
-                                    </th>
 
-                                    <th scope="col" className="px-6 py-5">
-                                        Price
-                                    </th>
-                                    <th scope="col" className="px-6 py-5">
-                                        Status
-                                    </th>
-                                    <th scope="col" className="px-6 py-5">
-                                        Shopping
-                                    </th>
-                                    <th scope="col" className="px-6 py-5">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr className="text-black border-b">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        01
-                                    </th>
-
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img className='w-20 h-20 rounded-md ' src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="" />
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Product Sliver
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $28
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Stock Out
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <button className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Add To Cart</button>
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <div className='flex gap-3 mt-4 cursor-pointer'>
-
-                                            <span className='h-10 w-10 rounded-md bg-[#119744] text-white border flex justify-center items-center'> <AiOutlineEye size={20} /></span>
-                                            <span className='h-10 w-10 rounded-md bg-red-500 text-white border flex justify-center items-center'> <AiOutlineDelete size={20} /></span>
-                                        </div>
-                                    </td>
-                                </tr> <tr className="text-black border-b">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        01
-                                    </th>
-
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img className='w-20 h-20 rounded-md ' src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="" />
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Product Sliver
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $28
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Stock Out
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <button className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Add To Cart</button>
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <div className='flex gap-3 mt-4 cursor-pointer'>
-
-                                            <span className='h-10 w-10 rounded-md bg-[#119744] text-white border flex justify-center items-center'> <AiOutlineEye size={20} /></span>
-                                            <span className='h-10 w-10 rounded-md bg-red-500 text-white border flex justify-center items-center'> <AiOutlineDelete size={20} /></span>
-                                        </div>
-                                    </td>
-                                </tr> <tr className="text-black border-b">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        01
-                                    </th>
-
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img className='w-20 h-20 rounded-md ' src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="" />
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Product Sliver
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $28
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Stock Out
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <button className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Add To Cart</button>
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <div className='flex gap-3 mt-4 cursor-pointer'>
-
-                                            <span className='h-10 w-10 rounded-md bg-[#119744] text-white border flex justify-center items-center'> <AiOutlineEye size={20} /></span>
-                                            <span className='h-10 w-10 rounded-md bg-red-500 text-white border flex justify-center items-center'> <AiOutlineDelete size={20} /></span>
-                                        </div>
-                                    </td>
-                                </tr> <tr className="text-black border-b">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        01
-                                    </th>
-
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img className='w-20 h-20 rounded-md ' src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="" />
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Product Sliver
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $28
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Stock Out
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <button className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Add To Cart</button>
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <div className='flex gap-3 mt-4 cursor-pointer'>
-
-                                            <span className='h-10 w-10 rounded-md bg-[#119744] text-white border flex justify-center items-center'> <AiOutlineEye size={20} /></span>
-                                            <span className='h-10 w-10 rounded-md bg-red-500 text-white border flex justify-center items-center'> <AiOutlineDelete size={20} /></span>
-                                        </div>
-                                    </td>
-                                </tr> <tr className="text-black border-b">
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        01
-                                    </th>
-
-                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img className='w-20 h-20 rounded-md ' src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="" />
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        Product Sliver
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        $28
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        Stock Out
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <button className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Add To Cart</button>
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <div className='flex gap-3 mt-4 cursor-pointer'>
-
-                                            <span className='h-10 w-10 rounded-md bg-[#119744] text-white border flex justify-center items-center'> <AiOutlineEye size={20} /></span>
-                                            <span className='h-10 w-10 rounded-md bg-red-500 text-white border flex justify-center items-center'> <AiOutlineDelete size={20} /></span>
-                                        </div>
-                                    </td>
-                                </tr>
+                <div className='lg:max-w-7xl md-w-full  mx-auto px-4  md:px-12 mt-12'>
+                    <div className="md:flex gap-6  ">
+                        <div className='md:w-[70%] '>
+                            <form onSubmit={addorder}>
+                                <p className='text-2xl'>Billing Details</p>
+                                <label className='text-mono'>Your Name</label>
+                                <input type="text" name='name' className='py-3 px-3 border border-[#119744] rounded w-full mb-4' defaultValue={user?.displayName} placeholder='Your Full Name' />
+                                <label className='text-mono'>Your Email</label>
+                                <input type="text" className='py-3 px-3 border border-[#119744] rounded w-full mb-4' defaultValue={user?.email} placeholder='Your Email' disabled />
+                                <label className='text-mono'>Phone Number (optional)</label>
+                                <input type="text" name='phone' className='py-3 px-3 border border-[#119744] rounded w-full mb-4' placeholder='Your Phone' />
+                                <p className='text-2xl '>Additional information</p>
+                                <textarea className=' p-2 h-[96px] border border-[#119744] rounded w-full mb-4' name="addinfo" id="" ></textarea>
+                                <p className='text-2xl '>Your Order</p>
+                                <div className='w-full flex justify-between mt-4'>
+                                    <h2 className='font-bold text-[#FE5D03]'>Product</h2>
+                                    <h2 className='font-bold text-[#FE5D03]'>Subtotal</h2>
+                                </div>
+                                <hr />
 
 
 
+                                <div className='w-full flex justify-between mt-4'>
+                                    <h2 className='font-bold text-[#FE5D03]'>Subtotal</h2>
+                                    <h2 className='font-bold text-[#FE5D03]'>৳ {subtotal} BDT</h2>
+                                </div>
+                                <hr />
+                                <div className='w-full flex justify-between mt-4'>
+                                    <h2 className='font-bold text-[#FE5D03]'>Delivery</h2>
+                                    <h2 className='font-bold text-[#FE5D03]'>৳ {delivery} BDT</h2>
+                                </div>
+                                <hr />
+                                <div className='w-full flex justify-between mt-4'>
+                                    <h2 className='font-bold text-[#FE5D03]'>VAT</h2>
+                                    <h2 className='font-bold text-[#FE5D03]'>৳ {VAT} BDT</h2>
+                                </div>
+                                <hr />
 
+                                <div className='w-full flex justify-between mt-4'>
+                                    <h2 className='font-bold text-[#FE5D03]'>Total</h2>
+                                    <div id='allprice'><h2 className='font-bold text-[#FE5D03]'>৳ {Total} BDT</h2></div>
+                                </div>
+                                <button disabled={Total <= 0} className='my-4 w-full bg-[#FE5D03] py-3 text-xl font-bold text-white rounded-md' type='submit' >Place Order</button>
 
-                            </tbody>
-                        </table>
+                            </form>
+
+                        </div>
+                        <div className='md:w-[30%]  '>
+                            <div>
+                                <img className='mx-auto' src="https://www.oneeducation.org.uk/wp-content/uploads/2021/11/side-checkout-2.jpg" alt="" />
+                            </div>
+                            <div>
+                                <img className='mx-auto' src="https://www.oneeducation.org.uk/wp-content/uploads/2021/11/side-checkout-1.jpg" alt="" />
+                            </div>
+
+                        </div>
                     </div>
 
+
                 </div>
+
+
+
+
             </div>
         </div>
     );

@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../Firebase/Firebase.init';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import Loading from '../../component/Loading/Loading';
+import useToken from '../../hooks/useToken';
 
 const Singup = () => {
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const { register, formState: { errors }, reset, watch, handleSubmit } = useForm();
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const navigate = useNavigate()
+    const location = useLocation()
+    // const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(user || googleUser)
+    let from = location.state?.from?.pathname || '/'
+
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.name });
+        // console.log(data);
+    }
+
+    if (loading || googleLoading || updating) {
+        return <Loading></Loading>
+    }
+
+    let errorMessage
+    if (error || googleError || updateError) {
+        errorMessage = <p className='text-red-500 font-serif'> {error?.message || googleError?.message || updateError.message}</p>
+    }
+
+    if (token) {
+        console.log(token)
+        navigate(from, { replace: true })
+    }
+
     return (
         <div>
             <section className="h-screen mx-10 pt-8">
@@ -21,7 +56,7 @@ const Singup = () => {
                             />
                         </div>
                         <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                            <form>
+                            <div >
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="text-lg mb-0 mr-4">Sing in with</p>
                                     <button
@@ -33,8 +68,8 @@ const Singup = () => {
 
                                         <FaFacebookF className='w-4 h-4' />
                                     </button>
-
-                                    <button
+                                    {/* google  */}
+                                    <button onClick={() => signInWithGoogle()}
                                         type="button"
                                         data-mdb-ripple="true"
                                         data-mdb-ripple-color="light"
@@ -83,54 +118,116 @@ const Singup = () => {
                                     <p className="text-center font-semibold mx-4 mb-0">Or</p>
                                 </div>
 
-                                {/* <!-- Email input --> */}
-                                <div className="mb-6">
-                                    <input
-                                        type="text"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Email address"
-                                    />
-                                </div>
 
-                                {/* <!-- Password input --> */}
-                                <div className="mb-6">
-                                    <input
-                                        type="password"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Password"
-                                    />
-                                </div>
+                                <form onSubmit={handleSubmit(onSubmit)}>
 
-                                <div className="mb-6">
-                                    <input
-                                        type="password"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Confirm Password"
-                                    />
-                                </div>
+                                    {/* <!-- Name input --> */}
+                                    <div className="mb-6">
+                                        <input  {...register("name", {
+                                            required: {
+                                                value: true,
+                                                message: 'Name is Required'
+                                            }
+                                        })}
+                                            type="text"
+                                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+
+                                            placeholder="Full Name"
+                                        />
+                                        {errors.name?.type === 'required' && <span className="label-text-alt text-red-500 font-medium">{errors.name.message}</span>}
+
+                                    </div>
+
+                                    {/* <!-- Email input --> */}
+                                    <div className="mb-6">
+                                        <input {...register("email", {
+                                            required: {
+                                                value: true,
+                                                message: 'Email is Required'
+                                            },
+                                            pattern: {
+                                                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                                message: 'Provide a valid Email'
+                                            }
+                                        })}
+                                            type="email"
+                                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+
+                                            placeholder="Email address"
+                                        />
+
+                                        {errors.email?.type === 'required' && <span className="label-text-alt text-red-500 font-medium">{errors.email.message}</span>}
+                                        {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500 font-medium">{errors.email.message}</span>}
 
 
+                                    </div>
 
-                                <div className="text-center lg:text-left">
-                                    <button
-                                        type="button"
-                                        className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    >
-                                        Singup
-                                    </button>
-                                    <p className="text-sm font-semibold mt-2 pt-1 mb-0">
-                                        Already have an account?
-                                        <Link to="/login"
+                                    {/* <!-- Password input --> */}
+                                    <div className="mb-6">
+                                        <input {...register("password", {
+                                            required: {
+                                                value: true,
+                                                message: 'Password is Required'
+                                            },
+                                            minLength: {
+                                                value: 6,
+                                                message: 'Must be 6 characters or longer'
+                                            }
+                                        })}
+                                            type="password"
+                                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 
-                                            className="ml-2 text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
-                                        >Login</Link
+                                            placeholder="Password"
+                                        />
+                                        {errors.password && <label className="label"> <span className="label-text-alt text-red-500 font-medium">{errors.password.message}</span>  </label>}
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <input  {...register("confirmpassword", {
+                                            required: "PLease give a confirm password",
+                                            minLength: {
+                                                value: 6,
+                                                message: 'Must be 6 characters or longer'
+                                            },
+                                            validate: (val) => {
+                                                if (watch('password') !== val) {
+                                                    return "passwords did't match";
+                                                }
+                                            }
+                                        })}
+                                            type="password"
+                                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+
+                                            placeholder="Confirm Password"
+                                        />
+                                        {errors.confirmpassword && <label className="label"> <span className="label-text-alt text-red-500 font-medium">{errors.confirmpassword.message}</span> </label>}
+
+                                    </div>
+
+                                    {errorMessage}
+
+                                    <div className="text-center lg:text-left">
+                                        <button
+                                            type="submit"
+                                            className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                         >
-                                    </p>
-                                </div>
-                            </form>
+                                            Singup
+                                        </button>
+
+
+
+                                        <p className="text-sm font-semibold mt-2 pt-1 mb-0">
+                                            Already have an account?
+                                            <Link to="/login"
+
+                                                className="ml-2 text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                                            >Login</Link
+                                            >
+                                        </p>
+
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

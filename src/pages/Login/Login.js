@@ -1,8 +1,40 @@
 import React from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Loading from '../../component/Loading/Loading';
+import auth from '../../Firebase/Firebase.init';
+import useToken from '../../hooks/useToken';
 const Login = () => {
+    const [googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
+    const { register, formState: { errors }, reset, handleSubmit } = useForm();
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [token] = useToken(user || googleUser)
+    let from = location.state?.from?.pathname || '/'
+
+    const onSubmit = (data) => {
+
+        signInWithEmailAndPassword(data.email, data.password)
+    }
+
+    if (loading || googleLoading) {
+        return <Loading></Loading>
+    }
+
+    let errorMessage
+    if (error || googleError) {
+        errorMessage = <p className='font-blod text-red-600'>{error?.message || googleError?.message}</p>
+    }
+    if (token) {
+        // console.log(token)
+        navigate(from, { replace: true })
+    }
+
+
     return (
         <div className='bg-[#f5f6f7]'>
 
@@ -21,7 +53,7 @@ const Login = () => {
                             />
                         </div>
                         <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                            <form>
+                            <div>
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="text-lg mb-0 mr-4">Log in with</p>
                                     <button
@@ -83,57 +115,89 @@ const Login = () => {
                                     <p className="text-center font-semibold mx-4 mb-0">Or</p>
                                 </div>
 
-                                {/* <!-- Email input --> */}
-                                <div className="mb-6">
-                                    <input
-                                        type="text"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Email address"
-                                    />
-                                </div>
+                                <form onSubmit={handleSubmit(onSubmit)}>
 
-                                {/* <!-- Password input --> */}
-                                <div className="mb-6">
-                                    <input
-                                        type="password"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Password"
-                                    />
-                                </div>
 
-                                <div className="flex justify-between items-center mb-6">
-                                    <div className="form-group form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                            id="exampleCheck2"
+
+
+                                    {/* <!-- Email input --> */}
+                                    <div className="mb-6">
+                                        <input {...register("email", {
+                                            required: {
+                                                value: true,
+                                                message: 'Email is Required'
+                                            },
+                                            pattern: {
+                                                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                                message: 'Provide a valid Email'
+                                            }
+                                        })}
+                                            type="email"
+                                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            id="exampleFormControlInput2"
+                                            placeholder="Email address"
                                         />
-                                        <label className="form-check-label inline-block text-gray-800" for="exampleCheck2"
-                                        >Remember me</label
-                                        >
+                                        {errors.email?.type === 'required' && <span className="label-text-alt text-red-500 font-medium">{errors.email.message}</span>}
+                                        {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500 font-medium">{errors.email.message}</span>}
+
                                     </div>
-                                    <a href="#!" className="text-gray-800">Forgot password?</a>
-                                </div>
 
-                                <div className="text-center lg:text-left">
-                                    <button
-                                        type="button"
-                                        className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    >
-                                        Login
-                                    </button>
-                                    <p className="text-sm font-semibold mt-2 pt-1 mb-0">
-                                        Don't have an account?
-                                        <Link to='/singup'
+                                    {/* <!-- Password input --> */}
+                                    <div className="mb-6">
+                                        <input {...register("password", {
+                                            required: {
+                                                value: true,
+                                                message: 'Password is Required'
+                                            },
+                                            minLength: {
+                                                value: 6,
+                                                message: 'Must be 6 characters or longer'
+                                            }
+                                        })}
+                                            type="password"
+                                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            id="exampleFormControlInput2"
+                                            placeholder="Password"
+                                        />
+                                        {errors.password?.type === 'required' && <span className="label-text-alt text-red-500 font-medium">{errors.password.message}</span>}
+                                        {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500 font-medium">{errors.password.message}</span>}
 
-                                            className="ml-2 text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
-                                        >Register</Link
+                                    </div>
+
+                                    <div className="flex justify-between items-center mb-6">
+                                        <div className="form-group form-check">
+                                            <input
+                                                type="checkbox"
+                                                className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                id="exampleCheck2"
+                                            />
+                                            <label className="form-check-label inline-block text-gray-800" for="exampleCheck2"
+                                            >Remember me</label
+                                            >
+                                        </div>
+                                        <a href="#!" className="text-gray-800">Forgot password?</a>
+                                    </div>
+
+                                    {errorMessage}
+
+                                    <div className="text-center lg:text-left">
+                                        <button
+                                            type="submit"
+                                            className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                         >
-                                    </p>
-                                </div>
-                            </form>
+                                            Login
+                                        </button>
+                                        <p className="text-sm font-semibold mt-2 pt-1 mb-0">
+                                            Don't have an account?
+                                            <Link to='/singup'
+
+                                                className="ml-2 text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                                            >Register</Link
+                                            >
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

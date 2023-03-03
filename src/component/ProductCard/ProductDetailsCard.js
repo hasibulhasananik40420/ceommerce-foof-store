@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiFillStar, AiOutlineGoogle } from 'react-icons/ai'
 import { BiBasket } from 'react-icons/bi'
 import { FaFacebookF } from 'react-icons/fa';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 
 const ProductDetailsCard = () => {
+
+    const product = useLoaderData()
+    const { img, name, price, description } = product
+    // console.log(product)
+
+
     return (
         <div className='mt-16 bg-[#f5f6f7] lg:h-[100vh]'>
             <div className='flex justify-center items-center pt-16 pb-8 '>
@@ -21,7 +28,7 @@ const ProductDetailsCard = () => {
                     {/* card content */}
                     <div className='lg:flex gap-5 '>
                         <div className='lg:w-2/4 w-full relative'>
-                            <img src="https://mironmahmud.com/greeny/assets/ltr/images/product/09.jpg" alt="" />
+                            <img src={img} alt="" />
                             <div className='absolute top-0 left-0'>
                                 <p className='bg-[#119744] rounded text-white w-14 h-6 text-center'>New</p>
                                 <p className='bg-red-600 rounded text-white w-14 h-6 text-center mt-1'>-10%</p>
@@ -30,7 +37,7 @@ const ProductDetailsCard = () => {
                         <div className=' border border-l border-[#119744]'></div>
 
                         <div className='lg:w-2/4 w-full p-6'>
-                            <h1 className='lg:text-2xl text-xl font-sans font-semibold'>Fresh Organic Green Chilis</h1>
+                            <h1 className='lg:text-2xl text-xl font-sans font-semibold'>{name}</h1>
                             <span className='flex  items-center gap-2 mt-2'>
                                 <AiFillStar className='text-[#ffab10]' />
                                 <AiFillStar className='text-[#ffab10]' />
@@ -39,8 +46,8 @@ const ProductDetailsCard = () => {
                                 <p className=' text-xl font-thin text-[39404a]'>(3 reviews)</p>
 
                             </span>
-                            <p className='font-medium text-xl mt-4'>$28/piece</p>
-                            <p className='mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit non tempora magni repudiandae sint suscipit tempore quis maxime explicabo veniam eos reprehenderit fuga</p>
+                            <p className='font-medium text-xl mt-4'>${price}/piece</p>
+                            <p className='mt-4'>{description}</p>
 
 
 
