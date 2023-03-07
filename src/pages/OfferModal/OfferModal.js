@@ -7,7 +7,7 @@ const OfferModal = ({ setOpenModal }) => {
     const [offers] = useOffer()
 
     return (
-        <div className=' pt-24'>
+        <div className=' pt-24 '>
             <div className="modalBackground">
                 <div className="modalContainer">
                     <div className="titleCloseBtn">

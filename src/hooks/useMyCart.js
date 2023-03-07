@@ -8,7 +8,7 @@ const useMyCart = (email) => {
     const [myCart, setMyCart] = useState([])
 
     useEffect(() => {
-        const url = `http://localhost:5000/myallcart/${email}`
+        const url = `https://ecommerce-food-store-server.vercel.app/myallcart/${email}`
         fetch(url)
             .then(res => res.json())
             .then(data => {

@@ -30,7 +30,7 @@ const AddProduct = () => {
                         description: data.description,
                         img: img
                     }
-                    fetch('http://localhost:5000/addproducts', {
+                    fetch('https://ecommerce-food-store-server.vercel.app/addproducts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

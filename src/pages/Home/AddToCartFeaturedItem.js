@@ -29,7 +29,7 @@ const AddToCartFeaturedItem = ({ product }) => {
                 cartQuantity: product.quantity
             }
 
-            const url = `http://localhost:5000/addtocart`
+            const url = `https://ecommerce-food-store-server.vercel.app/addtocart`
 
             fetch(url, {
                 method: 'POST',

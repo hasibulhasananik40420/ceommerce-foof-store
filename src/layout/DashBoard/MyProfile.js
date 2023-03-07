@@ -33,7 +33,7 @@ const MyProfile = () => {
                         address: data.address,
                         img: img
                     }
-                    fetch(`http://localhost:5000/profiledata/${user?.email}`, {
+                    fetch(`https://ecommerce-food-store-server.vercel.app/profiledata/${user?.email}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
@@ -73,7 +73,7 @@ const MyProfile = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myprofiledata/${user?.email}`)
+        fetch(`https://ecommerce-food-store-server.vercel.app/myprofiledata/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data)

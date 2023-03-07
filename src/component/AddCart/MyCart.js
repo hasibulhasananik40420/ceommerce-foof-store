@@ -9,7 +9,7 @@ const MyCart = ({ data }) => {
     const [cartData, setCartData] = useState(data)
 
     const deleteCart = (id) => {
-        fetch(`http://localhost:5000/deletecart/${id}`, {
+        fetch(`https://ecommerce-food-store-server.vercel.app/deletecart/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',

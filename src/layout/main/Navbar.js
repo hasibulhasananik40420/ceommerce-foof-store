@@ -45,7 +45,7 @@ const Navbar = () => {
                                 </Link>
 
 
-                                <div className='flex justify-center items-center gap-2'>
+                                <div className='flex justify-center items-center gap-2 mr-12'>
 
                                     {user && <Link to='/dashboard' className='md:ml-8 text-xl text-[#119744]  font-semibold rounded-full border border-[#119744] px-4 py-1 hover:bg-[#119744] hover:text-white hover:duration-500 cursor-pointer '>Dashboard
 

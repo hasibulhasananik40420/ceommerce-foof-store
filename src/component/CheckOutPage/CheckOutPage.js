@@ -44,7 +44,7 @@ const CheckOutPage = () => {
 
         }
 
-        fetch('http://localhost:5000/orderplace', {
+        fetch('https://ecommerce-food-store-server.vercel.app/orderplace', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -61,7 +61,7 @@ const routes = createBrowserRouter([
                 path: "/product-details/:id",
                 element: <ProductDetailsCard />,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/product-details/${params.id}`)
+                    fetch(`https://ecommerce-food-store-server.vercel.app/product-details/${params.id}`)
 
             },
             {

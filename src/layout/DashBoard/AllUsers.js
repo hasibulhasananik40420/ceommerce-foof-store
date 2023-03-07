@@ -6,7 +6,7 @@ import Loading from '../../component/Loading/Loading';
 
 const AllUsers = () => {
 
-    const { data: allusers, isLoading, refetch } = useQuery('allusers', () => fetch('http://localhost:5000/allusers').then(res => res.json()));
+    const { data: allusers, isLoading, refetch } = useQuery('allusers', () => fetch('https://ecommerce-food-store-server.vercel.app/allusers').then(res => res.json()));
 
     if (isLoading) {
         return <Loading />
@@ -16,7 +16,7 @@ const AllUsers = () => {
     //make admin
 
     const makeAdmin = (email) => {
-        fetch(`http://localhost:5000/makeadmin/${email}`, {
+        fetch(`https://ecommerce-food-store-server.vercel.app/makeadmin/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -66,7 +66,7 @@ const AllUsers = () => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/delete/${id}`, {
+                fetch(`https://ecommerce-food-store-server.vercel.app/delete/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'content-type': 'application/json',

@@ -14,7 +14,8 @@
     width: 500px;
     /* height: 500px; */
     border-radius: 12px;
-    background-color: #119744;
+    background-color: #2193b0;
+    /* background-image: linear-gradient(to right, rgba(99, 6, 187, 0), rgb(59, 154, 243)); */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;

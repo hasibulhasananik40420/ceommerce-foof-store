@@ -14,7 +14,7 @@ const MyReview = () => {
 
         }
 
-        fetch('http://localhost:5000/review', {
+        fetch('https://ecommerce-food-store-server.vercel.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -10,7 +10,7 @@ const AddOffer = () => {
         const offerData = {
             offerTitle, offerDetails
         }
-        fetch('http://localhost:5000/offer', {
+        fetch('https://ecommerce-food-store-server.vercel.app/offer', {
             method: 'POST',
             body: JSON.stringify(offerData),
             headers: {
