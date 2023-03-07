@@ -8,7 +8,7 @@ import Loading from '../../component/Loading/Loading';
 import auth from '../../Firebase/Firebase.init';
 import useToken from '../../hooks/useToken';
 const Login = () => {
-    const [googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
     const navigate = useNavigate()
@@ -66,7 +66,7 @@ const Login = () => {
                                         <FaFacebookF className='w-4 h-4' />
                                     </button>
 
-                                    <button
+                                    <button onClick={() => signInWithGoogle()}
                                         type="button"
                                         data-mdb-ripple="true"
                                         data-mdb-ripple-color="light"
