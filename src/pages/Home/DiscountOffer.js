@@ -5,17 +5,17 @@ const DiscountOffer = () => {
 
 
     return (
-        <div className='bg-[#a1f3c0] lg:h-[90vh] mt-16'>
+        <div className=' bg-[#a1f3c0] lg:h-[90vh] h-full mt-16'>
 
-            <div className='lg:flex mx-10 gap-x-16 py-16 '>
-                <div className='lg:w-2/4 w-full mt-16 pl-10'>
+            <div className='lg:max-w-7xl mx-auto justify-center lg:flex  gap-x-16 py-16 '>
+                <div className=' lg:w-2/4 w-full mt-16 pl-10'>
                     <h1 className='lg:text-4xl text-xl font-bold text-[#39404a] font-serif'>SPECIAL DISCOUNT OFFER</h1>
                     <h1 className='lg:text-4xl text-xl mt-2 lg:ml-4 font-bold text-[#39404a] font-serif'> FOR VEGETABLE ITEMS</h1>
                     <p className='mt-4 text-[#555555]'>Reprehenderit sed quod autem molestiae aut modi minus veritatis iste dolorum suscipit quis voluptatum fugiat mollitia quia minima</p>
 
 
 
-                    <div className='flex justify-evenly mt-6'>
+                    <div className=' flex justify-evenly mt-6'>
 
                         <div>
                             <h1 className='lg:text-5xl text-3xl font-bold text-[#119744] font-serif'>00</h1>

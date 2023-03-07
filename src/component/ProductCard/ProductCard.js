@@ -21,13 +21,13 @@ const ProductCard = () => {
 
                 !products.length ? <Loading /> :
 
-                    <div className='mt-12'>
+                    <div className='mt-12 mx-w-7xl mx-auto mx-4'>
                         <div className='p-4'>
-                            <h1 className='lg:text-4xl text-2xl font-bold text-center'>Recently Sold Items</h1>
+                            <h1 className='lg:text-4xl text-2xl font-bold text-center '>Recently Sold Items</h1>
                         </div>
 
                         {/* productcard */}
-                        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6'>
+                        <div className='lg:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center'>
 
 
 

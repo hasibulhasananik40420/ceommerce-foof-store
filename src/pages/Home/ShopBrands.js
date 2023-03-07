@@ -3,11 +3,11 @@ import { AiFillEye } from 'react-icons/ai';
 
 const ShopBrands = () => {
     return (
-        <div className='mt-20 mx-10'>
+        <div className='mt-20 max-w-7xl mx-auto px-4'>
             <h1 className='lg:text-4xl font-bold font-serif text-[#39404a] text-center'>Shop By Brands</h1>
 
 
-            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-20'>
+            <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-items-center mt-20'>
                 <div className='text-center '>
                     <div className='h-48 w-48 rounded-full border-2 border-dashed bg-white hover:border-dashed hover:border-[#119744]'>
                         <img className='rounded-full flex justify-center items-center' src="https://mironmahmud.com/greeny/assets/ltr/images/brand/01.jpg" alt="" />

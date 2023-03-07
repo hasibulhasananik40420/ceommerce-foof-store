@@ -7,13 +7,13 @@ import { FaQuoteLeft } from "react-icons/fa";
 const FeedBack = () => {
 
     return (
-        <div className="mx-10 pt-16">
-            <h1 className=" text-[#39404a] text-4xl font-serif font-semibold text-center mb-8">Client's Feedback</h1>
+        <div className="max-w-7xl mx-auto pt-16 px-8">
+            <h1 className=" text-[#39404a] lg:text-4xl text-2xl font-serif font-semibold text-center mb-8">Client's Feedback</h1>
 
-            <div className="container lg:flex lg:justify-evenly mt-16 ">
+            <div className=" lg:flex lg:flex-wrap justify-center lg:gap-x-12  mt-16 ">
 
 
-                <div className="relative">
+                <div className="relative mb-16 lg:mb-0">
                     <div className=" lg:w-[550px]  w-full  rounded-md bg-[#119744] text-center px-10 py-6 ">
                         <div className="flex justify-center mb-5">
                             <FaQuoteLeft size={50} className="text-white " />

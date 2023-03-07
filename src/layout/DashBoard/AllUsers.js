@@ -133,7 +133,7 @@ const AllUsers = () => {
                                     {user?.email}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {user.role !== 'admin' && <button onClick={() => makeAdmin(user?.email)} className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Make Admin</button>}
+                                    {user?.role !== 'admin' && <button onClick={() => makeAdmin(user?.email)} className='px-4 py-2 bg-[#119744] text-white font-medium rounded'>Make Admin</button>}
 
                                     <button className='px-4 py-2 bg-red-500 text-white font-medium rounded ml-4'>Remove Admin</button>
 

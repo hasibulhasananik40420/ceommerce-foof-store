@@ -20,6 +20,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import OfferModal from "../pages/OfferModal/OfferModal";
 import Singup from "../pages/Singup/Singup";
+import PrivateAdmin from "../utilites/PrivateAdmin";
 import PrivateRoute from "../utilites/PrivateRoute";
 
 const routes = createBrowserRouter([
@@ -65,7 +66,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/cart",
-                element: <AddCart />
+                element: <PrivateRoute><AddCart /></PrivateRoute>
             },
             {
                 path: "/checkout",

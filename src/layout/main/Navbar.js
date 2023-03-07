@@ -32,8 +32,8 @@ const Navbar = () => {
     }
 
     return (
-        <div>
-            <nav className='mx-16'>
+        <div className='max-w-7xl mx-auto'>
+            <nav className='mx-16 '>
                 <div className='shadow-sm w-full fixed top-0 left-0 z-50 border-b'>
                     <div className='md:flex items-center justify-between bg-[#f5f6f7] py-4 md:px-10 px-7'>
                         <div className=' font-bold text-2xl cursor-pointer font-[Poppins] 

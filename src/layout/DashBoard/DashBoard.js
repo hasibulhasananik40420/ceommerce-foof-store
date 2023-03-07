@@ -8,9 +8,11 @@ import { RiUserLine } from 'react-icons/ri';
 import { Link, Outlet } from 'react-router-dom';
 import CustomLink from '../../component/CustomLink/CustomLink';
 import auth from '../../Firebase/Firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 
 const DashBoard = () => {
     const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
     return (
         <div className='pt-6'>
             <div className=''>
@@ -40,14 +42,19 @@ const DashBoard = () => {
 
                             <CustomLink className="hover:bg-[#FC8B06]" to='my-review'>  <span className='w-3/4 flex  items-center'><MdReviews className='block  mr-6 text-xl' /> <span className='block '>My Review</span></span></CustomLink>
 
-                            <CustomLink className="hover:bg-[#FC8B06]" to='all-users'><span className='w-3/4 flex  items-center'><RiUserLine className='block text-xl mr-6' /><span className='block'> All Users </span> </span></CustomLink>
+                            {admin && <>
+
+                                <CustomLink className="hover:bg-[#FC8B06]" to='all-users'><span className='w-3/4 flex  items-center'><RiUserLine className='block text-xl mr-6' /><span className='block'> All Users </span> </span></CustomLink>
 
 
-                            <CustomLink className="hover:bg-[#FC8B06]" to='add-product'><span className='w-3/4 flex  items-center'><RiUserLine className='block text-xl mr-6' /><span className='block'> Add Product </span> </span></CustomLink>
+                                <CustomLink className="hover:bg-[#FC8B06]" to='add-product'><span className='w-3/4 flex  items-center'><RiUserLine className='block text-xl mr-6' /><span className='block'> Add Product </span> </span></CustomLink>
 
 
-                            <CustomLink className="hover:bg-[#FC8B06]" to='add-offer'><span className='w-3/4 flex  items-center'><RiUserLine className='block text-xl mr-6' /><span className='block'> Add Offer </span> </span></CustomLink>
 
+                                <CustomLink className="hover:bg-[#FC8B06]" to='add-offer'><span className='w-3/4 flex  items-center'><RiUserLine className='block text-xl mr-6' /><span className='block'> Add Offer </span> </span></CustomLink>
+
+                            </>
+                            }
 
 
 

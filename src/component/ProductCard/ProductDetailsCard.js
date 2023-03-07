@@ -1,15 +1,64 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillStar, AiOutlineGoogle } from 'react-icons/ai'
 import { BiBasket } from 'react-icons/bi'
 import { FaFacebookF } from 'react-icons/fa';
 import { useLoaderData, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import auth from '../../Firebase/Firebase.init';
 
 
 const ProductDetailsCard = () => {
+    const [user] = useAuthState(auth)
 
     const product = useLoaderData()
-    const { img, name, price, description } = product
+    const { img, name, price, description, quantity } = product
     // console.log(product)
+
+
+    const addToCart = () => {
+        if (user?.email) {
+            const cartDetails = {
+                cartimage: img,
+                userEmail: user?.email,
+                cartName: name,
+                cartPrice: price,
+                cartDes: description,
+                cartQuantity: quantity
+            }
+
+            const url = `http://localhost:5000/addtocart`
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(cartDetails)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data)
+                    Swal.fire(
+                        'SuccessFully Added',
+                        'You Can Checkout this Product Now',
+                        'success'
+                    )
+
+                })
+
+
+
+        }
+
+        else {
+            Swal.fire(
+                'Log In First',
+                "You Can't Add To Cart WithOut Login",
+                'info'
+            )
+        }
+    }
 
 
     return (
@@ -116,7 +165,7 @@ const ProductDetailsCard = () => {
 
 
                             <div className='mt-8 '>
-                                <button className='w-full  py-2 bg-[#119744] rounded-md text-white flex gap-2 justify-center items-center'><span><BiBasket />
+                                <button onClick={addToCart} className='w-full  py-2 bg-[#119744] rounded-md text-white flex gap-2 justify-center items-center'><span><BiBasket />
                                 </span> <span>Add To Cart</span> </button>
                             </div>
                         </div>

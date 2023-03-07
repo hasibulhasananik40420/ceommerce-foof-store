@@ -45,7 +45,7 @@ const MyProfile = () => {
                         .then(data => {
                             // console.log(data)
 
-                            if (data.result.acknowledged) {
+                            if (data?.result?.acknowledged) {
                                 Swal.fire({
                                     position: 'top-center',
                                     icon: 'success',

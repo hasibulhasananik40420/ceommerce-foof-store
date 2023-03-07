@@ -5,6 +5,9 @@ import Swal from 'sweetalert2';
 import auth from '../../Firebase/Firebase.init';
 import useMyCart from '../../hooks/useMyCart';
 
+
+// const stripePromise = loadStripe('pk_test_51L3O63A075wgahMPXUKqu3rlTdQ90cYSLsDuKsWMH70GXlQDUteuuo2eTmki8zEHEyz5q1n3gUsTCMudqCHo0FP000aFDt7yOk');
+
 const CheckOutPage = () => {
 
 
@@ -21,7 +24,7 @@ const CheckOutPage = () => {
     let Total = Number(subtotal) + Number(VAT) + Number(delivery)
 
 
-
+    //https://dashboard.stripe.com/test/payments
 
     //prace order 
 
@@ -35,7 +38,8 @@ const CheckOutPage = () => {
             email: user?.email,
             phone: e.target.phone.value,
             addinfo: e.target.addinfo.value,
-            total: Total
+            total: Total,
+            mycart: myCart
 
 
         }
@@ -61,7 +65,7 @@ const CheckOutPage = () => {
             })
     }
 
-
+    // payment
 
 
 
@@ -93,6 +97,9 @@ const CheckOutPage = () => {
                                 <input type="text" name='phone' className='py-3 px-3 border border-[#119744] rounded w-full mb-4' placeholder='Your Phone' />
                                 <p className='text-2xl '>Additional information</p>
                                 <textarea className=' p-2 h-[96px] border border-[#119744] rounded w-full mb-4' name="addinfo" id="" ></textarea>
+
+
+
                                 <p className='text-2xl '>Your Order</p>
                                 <div className='w-full flex justify-between mt-4'>
                                     <h2 className='font-bold text-[#FE5D03]'>Product</h2>
@@ -122,6 +129,14 @@ const CheckOutPage = () => {
                                     <h2 className='font-bold text-[#FE5D03]'>Total</h2>
                                     <div id='allprice'><h2 className='font-bold text-[#FE5D03]'>৳ {Total} BDT</h2></div>
                                 </div>
+
+
+
+
+
+
+
+
                                 <button disabled={Total <= 0} className='my-4 w-full bg-[#FE5D03] py-3 text-xl font-bold text-white rounded-md' type='submit' >Place Order</button>
 
                             </form>

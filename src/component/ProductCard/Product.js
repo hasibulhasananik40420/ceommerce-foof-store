@@ -43,21 +43,7 @@ const Product = ({ product }) => {
                         'You Can Checkout this Product Now',
                         'success'
                     )
-                    // if (data.upsertedCount > 0) {
-                    //     Swal.fire(
-                    //         'SuccessFully Added',
-                    //         'You Can Checkout this Product Now',
-                    //         'success'
-                    //     )
-                    // }
-                    // else if (data.matchedCount > 0) {
-                    //     Swal.fire(
-                    //         'Already Added',
-                    //         'You Already Added this on your Cart',
-                    //         'success'
-                    //     )
 
-                    // }
                 })
 
 

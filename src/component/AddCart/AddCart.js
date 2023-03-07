@@ -8,7 +8,7 @@ const AddCart = () => {
     let prices = []
     const [user] = useAuthState(auth)
     const [myCart] = useMyCart(user?.email)
-    console.log(myCart)
+    // console.log(myCart)
 
     myCart.map(data => prices.push(Number(data.cartPrice)))
     // console.log(prices);
@@ -19,7 +19,7 @@ const AddCart = () => {
 
 
     return (
-        <div className='pt-20'>
+        <div className='pt-20 '>
 
             <div className=''>
                 {
@@ -32,7 +32,7 @@ const AddCart = () => {
 
             <div className='bg-[#f5f6f7] px-10 pt-2 pb-8'>
 
-                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6'>
+                <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center'>
                     {
                         myCart?.map(cart => <MyCart key={cart._id} data={cart} />)
                     }
